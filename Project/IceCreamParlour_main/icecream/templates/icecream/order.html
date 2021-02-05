@@ -1,0 +1,45 @@
+{% extends 'icecream/base.html' %}
+{% block content %}
+
+  {% load widget_tweaks %}
+  <div class="container">
+    <h1> Order an Icecream </h1>
+
+<h2>{{ note }}</h2>
+
+{% if prepared_icecream_pk %}
+<a href="{% url 'edit_order' prepared_icecream_pk %}">Edit Your Order</a>
+{% endif %}
+<form action="{% url 'order' %}" method="post">
+    {% csrf_token %}
+    {% for field in  IceForm %}
+    <div class="form-group">
+        {{ field.errors }}
+        {{ field.label_tag }}
+        {% render_field field class="form-control" %}
+    </div>
+    {% endfor %}
+
+    <input type="submit" value="Order">
+</form>
+
+<br><br>
+
+Will you like have  more than one Icecream ?
+
+<form action="{% url 'icecream' %}" method="get">
+    {{ multiple_form }}
+
+    <input type="submit" value="Get Icecreams">
+</form>
+  </div>
+
+     <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+{% endblock %}
+
+
+
+
+

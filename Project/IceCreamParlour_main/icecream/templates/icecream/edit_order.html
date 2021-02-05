@@ -1,0 +1,15 @@
+{% extends 'icecream/base.html' %}
+{% block 'body' %}
+  <div class="container">
+<h1>Edit Icecream</h1>
+
+<h2>{{ note }}</h2>
+<form action="{% url 'edit_order' icecream.id %}" method="post">
+    {% csrf_token %}
+    {{ IceForm }}
+
+    <input type="submit" value="Edit Icecream">
+
+</form>
+  </div>>
+{% endblock %}

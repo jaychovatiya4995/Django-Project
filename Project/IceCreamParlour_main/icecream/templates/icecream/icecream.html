@@ -1,0 +1,23 @@
+{% extends 'icecream/base.html' %}
+{% block content %}
+
+<div class="container">
+<h1>Order Icecreams</h1>
+
+<h2>{{ note }}</h2>
+
+<form action="{% url 'icecreams' %}" method="POST">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    {% for form in formset %}
+    {{ form }}
+    <br><br>
+    {% endfor %}
+
+    <input type="submit" value="Order Icecreams">
+
+</form>
+    <div>
+    </div>
+</div>
+{% endblock %}
